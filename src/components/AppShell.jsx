@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import AppBar from '@material-ui/core/AppBar';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Home from './Home';
+import Texts from './Texts';
+import Words from './Words';
+
 
 const styles = {
   root: {
@@ -25,17 +31,30 @@ function AppShell(props) {
   }
   
   return (
-    <div className={classes.root}>
-      <AppBar position='static'>
-        <IconButton className={classes.menuButton} color="inherit" onClick={handleDrawerToggle}>
-          <MenuIcon />
-        </IconButton>
-      </AppBar>
-      <Drawer open={toggle}>
-        <MenuItem onClick={handleDrawerToggle}>Home</MenuItem>
-      </Drawer>
+    <>
+      <div className={classes.root}>
+        <AppBar position='static'>
+          <IconButton className={classes.menuButton} color="inherit" onClick={handleDrawerToggle}>
+            <MenuIcon />
+          </IconButton>
+        </AppBar>
+        <Drawer open={toggle}>
+          <MenuItem onClick={handleDrawerToggle}>
+            <Link component={RouterLink} to='/'>Home</Link>
+          </MenuItem>
+          <MenuItem onClick={handleDrawerToggle}>
+            <Link component={RouterLink} to='/texts'>texts</Link>
+          </MenuItem>
+          <MenuItem onClick={handleDrawerToggle}>
+            <Link component={RouterLink} to='/words'>words</Link>
+          </MenuItem>
+        </Drawer>
+      </div>
+      <div id="content" style={{margin: 'auto', marginTop : '20px'}}>
+        {React.cloneElement(props.children)}
+      </div>
+    </>
 
-    </div>
   )
 }
 
