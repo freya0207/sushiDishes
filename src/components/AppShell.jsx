@@ -7,10 +7,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Home from './Home';
-import Texts from './Texts';
-import Words from './Words';
-
 
 const styles = {
   root: {
