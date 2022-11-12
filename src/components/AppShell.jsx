@@ -36,13 +36,13 @@ function AppShell(props) {
         </AppBar>
         <Drawer open={toggle}>
           <MenuItem onClick={handleDrawerToggle}>
-            <Link component={RouterLink} to='/'>Home</Link>
+            <Link component={RouterLink} to='/'>메인화면</Link>
           </MenuItem>
           <MenuItem onClick={handleDrawerToggle}>
-            <Link component={RouterLink} to='/texts'>texts</Link>
+            <Link component={RouterLink} to='/texts'>텍스트 관리</Link>
           </MenuItem>
           <MenuItem onClick={handleDrawerToggle}>
-            <Link component={RouterLink} to='/words'>words</Link>
+            <Link component={RouterLink} to='/words'>단어 관리</Link>
           </MenuItem>
         </Drawer>
       </div>

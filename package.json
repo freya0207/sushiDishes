@@ -1,7 +1,7 @@
 {
   "name": "wordcloud",
-  "version": "0.1.4",
-  "description": "firebase 9 firebase realtime DB 최신버전 write, delete, update구현",
+  "version": "0.1.5",
+  "description": "firebase 9 hosting 완료",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.4",
