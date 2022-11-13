@@ -65,6 +65,12 @@ function Words(props) {
   }
   function handleValueWeightChange(e) {
     setWeight(e.target.value)
+    if(e.target.value < 1) {
+      setWeight(1);
+    }
+    else if(e.target.value > 9) {
+        setWeight(9);
+    }
   }
 
   function saveWordToFirebase (wordData) {
@@ -124,7 +130,7 @@ function Words(props) {
         <DialogTitle>단어추가</DialogTitle>
         <DialogContent>
           <TextField label='단어' type='text' name='word' value={word} onChange={handleValueWordChange} /> <br />
-          <TextField label='가중치' type='text' name='weight' value={weight} onChange={handleValueWeightChange} /> <br />
+          <TextField label='가중치' type='number' name='weight' value={weight} onChange={handleValueWeightChange} /> <br />
         </DialogContent>
         <DialogActions>
           <Button variant='contained' color='primary' onClick={handleSubmit}>추가</Button>

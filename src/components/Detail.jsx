@@ -120,7 +120,6 @@ function Detail(props) {
       !wordCloud?.words) {
         return;
       }
-      console.log('안', wordCloud.maxCount, wordCloud.minLength)
     makeWordCloud(wordCloud)
   }
 
@@ -153,12 +152,12 @@ function Detail(props) {
       <Card>
         <CardContent>
           {
-            (imageURL.imageURL)?
-                ((imageURL.imageURL === 'READY')?
+            (imageURL?.imageURL)?
+                ((imageURL?.imageURL === 'READY')?
                     '워드 클라우드 이미지를 불러오고 있습니다.':
-                    ((imageURL.imageURL === 'NONE')?
+                    ((imageURL?.imageURL === 'NONE')?
                         '해당 텍스트에 대한 워드 클라우드를 만들어 주세요.':
-                        <img alt='' key={Math.random()} src={imageURL.imageURL + '&random=' + Math.random()} style={{width: '100%'}}/>)):
+                        <img alt='' key={Math.random()} src={imageURL?.imageURL + '&random=' + Math.random()} style={{width: '100%'}}/>)):
             ''
           }
         </CardContent>

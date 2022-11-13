@@ -1,7 +1,7 @@
 {
   "name": "wordcloud",
-  "version": "0.1.6",
-  "description": "react detail 페이지로 firebase 와 flask 서버 연결 완료",
+  "version": "0.1.7",
+  "description": "상세수치 설정 완료",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.4",
