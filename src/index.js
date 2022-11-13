@@ -1,14 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+import './index.css';
+import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
+
+const theme = createTheme({
+  typography : {
+    useNextVariants: true,
+    fontFamily: "Noto Sans KR"
+  }
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <MuiThemeProvider theme={theme}>
     <App />
-  </React.StrictMode>
+  </MuiThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

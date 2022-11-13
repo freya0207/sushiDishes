@@ -1,7 +1,7 @@
 {
   "name": "wordcloud",
-  "version": "0.1.5",
-  "description": "firebase 9 hosting 완료",
+  "version": "0.1.6",
+  "description": "react detail 페이지로 firebase 와 flask 서버 연결 완료",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.4",
@@ -9,12 +9,16 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "css-loader": "^6.7.1",
+    "cuid": "^2.1.8",
     "firebase": "^9.13.0",
     "firebase-admin": "^11.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "react-text-truncate": "^0.19.0",
+    "style-loader": "^3.3.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

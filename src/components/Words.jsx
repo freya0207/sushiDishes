@@ -14,6 +14,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
+import cuid from 'cuid';
 
 const styles = theme => ({
   fab: {
@@ -24,9 +25,10 @@ const styles = theme => ({
 })
 
 function Words(props) {
-  const [words, setWords] = useState([]); //db에서 가져올때
-  const [loading, setLoading] = useState(false);
   const { classes } = props;
+
+  const [words, setWords] = useState({}); //db에서 가져올때
+  const [loading, setLoading] = useState(false);
 
   const [dialog, setDialog] = useState(false); //dialog 창 열때 
   const [word, setWord] = useState(''); //db로 단어 보낼때
@@ -47,16 +49,15 @@ function Words(props) {
     setLoading(false)
   }, [])
 
-  if(loading) {
-    return <h1>Loading...</h1>;
-  }
 
-  function handleDelete (word) {
-    remove(ref(dbrt, `words/${word}`))
+  function handleDelete (id) {
+    remove(ref(dbrt, `words/${id}`))
   }
 
   function handleDialogToggle() {
     setDialog(!dialog);
+    setWord([])
+    setWeight([])
   }
 
   function handleValueWordChange(e) {
@@ -66,8 +67,10 @@ function Words(props) {
     setWeight(e.target.value)
   }
 
-  function saveToFirebase (wordData) {
-    set(ref(dbrt, `/words/${wordData.word}`), {
+  function saveWordToFirebase (wordData) {
+    const uuid = cuid()
+    set(ref(dbrt, `/words/${uuid}`), {
+      id : uuid,
       word : wordData.word,
       weight: wordData.weight
     })
@@ -81,17 +84,20 @@ function Words(props) {
     if (!wordData.word || !wordData.weight) {
       alert('항목을 모두 입력하세요.')
     }
-    saveToFirebase(wordData)
-    setWord([])
-    setWeight([])
+    saveWordToFirebase(wordData)
+ 
+  }
+
+  if(loading) {
+    return <h1>Loading...</h1>;
   }
 
   return (
     <>
-      {Object.keys(words).map((id) => {
-        const word = words[id]
+      {Object.keys(words).map((i) => {
+        const word = words[i]
         return (
-        <Card key={id}>
+        <Card key={i}>
           <CardContent>
             <Typography color='textSecondary' gutterBottom>
               가중치 : {word.weight}
@@ -103,7 +109,7 @@ function Words(props) {
                 </Typography>
               </Grid>
               <Grid item xs={6}>
-                <Button variant='contained' color='primary' onClick={() => handleDelete(word.word)}>
+                <Button variant='contained' color='primary' onClick={() => handleDelete(word.id)}>
                   삭제
                 </Button>
               </Grid>
@@ -124,7 +130,6 @@ function Words(props) {
           <Button variant='contained' color='primary' onClick={handleSubmit}>추가</Button>
           <Button variant='outlined' color='primary' onClick={handleDialogToggle}>닫기</Button>
         </DialogActions>
-
       </Dialog>
     </>
   )
